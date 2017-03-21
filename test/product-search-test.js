@@ -61,7 +61,7 @@ describe('Product Search', function() {
 
   it('summay should return appropriate products from store/s or brand/s 1', function(done){
 
-    var stubData = JSON.parse(fs.readFileSync('test/stubs/product-search-offers-standard.json', 'utf8'));
+    var stubData = JSON.parse(fs.readFileSync('test/stubs/product-search-summary.json', 'utf8'));
     nock('https://api.indix.com').get('/v2/summary/products?q=nike&storeId=24&countryCode=US&app_id=APP_ID&app_key=APP_KEY').reply(200, stubData);
 
     var query = {
@@ -72,38 +72,33 @@ describe('Product Search', function() {
 
     ixClient.getProductSummary(query).then(function(results){
       results.length.should.equal(10);
-      results[0].stores['24'].offers[0].should.be.like({
-        "sku":"B00T85RCQ8",
-        "refurbishedOffers":0,
-        "priceHistoryAvailable":true,
-        "salesRank":0,
-        "productUrl":"http://www.amazon.com/dp/B00T85RCQ8?psc=1",
-        "userRatings":0,
-        "maxRating":0,
-        "addOnItem":false,
-        "availability":"IN_STOCK",
+      results[0].should.be.like({
+        "categoryNamePath":"Shoes > Men > Fashion Sneakers",
+        "categoryId":20082,
+        "mpid":"8e1d8cd338ada38624d2f9322b259402",
+        "categoryName":"Fashion Sneakers",
         "upcs":[
-
+          "00884499652748",
+          "00091206081795",
+          "00091206081818",
+          "00884499652755"
         ],
-        "avgRating":0,
-        "shippingText":"",
-        "fulfilledBy":"",
-        "pid":"8227ef32f6f7206372ac455f15879888",
+        "brandName":"Nike",
+        "minSalePrice":45.02,
+        "brandId":5572,
+        "categoryIdPath":"10179 > 17421 > 20082",
         "mpns":[
-
+          "ROSHERUN",
+          "511881-405"
         ],
-        "newOffers":0,
-        "listPrice":62.94,
-        "buyBoxWinner":false,
-        "additionalImageUrls":[
-
-        ],
-        "salePrice":62.94,
-        "cartPrice":false,
-        "lastRecordedAt":1461063096592,
-        "imageUrl":"http://ecx.images-amazon.com/images/I/41ylVprBNyL._AC_US160_.jpg",
-        "usedOffers":0,
-        "seller":"Amazon.com"
+        "countryCode":"US",
+        "currency":"USD",
+        "title":"Nike Men's Rosherun Running Shoe.",
+        "lastRecordedAt":1462486236868,
+        "imageUrl":"http://ecx.images-amazon.com/images/I/41N3coiimrL._AA200_.jpg",
+        "maxSalePrice":162.0,
+        "offersCount":212,
+        "storesCount":1
       });
       done();
     });
@@ -123,38 +118,33 @@ describe('Product Search', function() {
 
     ixClient.getProductSummary(query).then(function(results){
       results.length.should.equal(10);
-      results[0].stores['24'].offers[0].should.be.like({
-        "sku":"B00T85RCQ8",
-        "refurbishedOffers":0,
-        "priceHistoryAvailable":true,
-        "salesRank":0,
-        "productUrl":"http://www.amazon.com/dp/B00T85RCQ8?psc=1",
-        "userRatings":0,
-        "maxRating":0,
-        "addOnItem":false,
-        "availability":"IN_STOCK",
+      results[0].should.be.like({
+        "categoryNamePath":"Shoes > Men > Fashion Sneakers",
+        "categoryId":20082,
+        "mpid":"8e1d8cd338ada38624d2f9322b259402",
+        "categoryName":"Fashion Sneakers",
         "upcs":[
-
+          "00884499652748",
+          "00091206081795",
+          "00091206081818",
+          "00884499652755"
         ],
-        "avgRating":0,
-        "shippingText":"",
-        "fulfilledBy":"",
-        "pid":"8227ef32f6f7206372ac455f15879888",
+        "brandName":"Nike",
+        "minSalePrice":45.02,
+        "brandId":5572,
+        "categoryIdPath":"10179 > 17421 > 20082",
         "mpns":[
-
+          "ROSHERUN",
+          "511881-405"
         ],
-        "newOffers":0,
-        "listPrice":62.94,
-        "buyBoxWinner":false,
-        "additionalImageUrls":[
-
-        ],
-        "salePrice":62.94,
-        "cartPrice":false,
-        "lastRecordedAt":1461063096592,
-        "imageUrl":"http://ecx.images-amazon.com/images/I/41ylVprBNyL._AC_US160_.jpg",
-        "usedOffers":0,
-        "seller":"Amazon.com"
+        "countryCode":"US",
+        "currency":"USD",
+        "title":"Nike Men's Rosherun Running Shoe.",
+        "lastRecordedAt":1462486236868,
+        "imageUrl":"http://ecx.images-amazon.com/images/I/41N3coiimrL._AA200_.jpg",
+        "maxSalePrice":162.0,
+        "offersCount":212,
+        "storesCount":1
       });
       done();
     });
