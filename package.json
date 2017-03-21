@@ -1,6 +1,6 @@
 {
   "name": "indix-api-nodejs",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Indix API NodeJS Client",
   "main": "lib/indix-api.js",
   "scripts": {
