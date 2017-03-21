@@ -5,6 +5,7 @@ import fs from 'fs';
 import zlib from 'zlib';
 import byline from 'byline';
 import Promise from 'promise';
+import Debug from 'debug';
 var config = require(`../config/${process.env.NODE_ENV || 'default'}`);
 
 let appID,
@@ -12,6 +13,8 @@ let appID,
 
 var HOST = config.host;
 var VERSION = config.version;
+
+const log = Debug('indix-api');
 
 export function init(options){
   options = options || {};
@@ -24,10 +27,10 @@ export function init(options){
   HOST = typeof options.host != 'undefined' ? options.host : HOST;
   VERSION = typeof options.version != 'undefined' ? options.version : VERSION;
 
-  if(typeof appID != 'undefined'){ console.log(`App ID: ${appID}`); }
-  console.log(`App Key: ${appKey}`);
-  console.log(`Host: ${HOST}`);
-  console.log(`Version: ${VERSION}`);
+  if(typeof appID != 'undefined'){ log(`App ID: ${appID}`); }
+  log(`App Key: ${appKey}`);
+  log(`Host: ${HOST}`);
+  log(`Version: ${VERSION}`);
 }
 
 function getEntities(type, query){
@@ -315,9 +318,9 @@ function getBulkProducts(type, query){
 
   return new Promise(function (fulfill, reject){
 
-    console.log(options);
+    log(options);
     request.post(options, function (error, response, body) {
-      console.log(body);
+      log(body);
       if (!error && response.statusCode == 200) {
         fulfill(JSON.parse(body));
       }else{

@@ -27,15 +27,10 @@ export function convertToQueryParams(o){
       case 'brandId':
       case 'categoryId':
       case 'facetBy':
-        if (_.isArray(value)) {
-          let x = _.map(value, function(value){
-            return attr + '=' + value;
-          });
-          returnValue = x.join('&');
-        } else {
-          returnValue = attr + '=' + value;
-        }
-        break;
+        let x = _.map(value, function(value){
+          return attr + '=' + value;
+        });
+        return x.join('&');
 
       default:
         returnValue = attr + '=' + value;
