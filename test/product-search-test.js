@@ -107,7 +107,7 @@ describe('Product Search', function() {
 
   it('summay should return appropriate products from store/s or brand/s 2', function(done){
 
-    var stubData = JSON.parse(fs.readFileSync('test/stubs/product-search-offers-standard.json', 'utf8'));
+    var stubData = JSON.parse(fs.readFileSync('test/stubs/product-search-summary.json', 'utf8'));
     nock('https://api.indix.com').get('/v2/summary/products?q=nike&storeId=24&storeId=25&countryCode=US&app_id=APP_ID&app_key=APP_KEY').reply(200, stubData);
 
     var query = {
